@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - StegoCTF</title>
+  <title>Register - StegoCTF</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="preconnect" href="https://rsms.me/">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
@@ -23,20 +23,23 @@
   </nav>
 
   <section class="login-container">
-    <h1>Login</h1>
+    <h1>Create an account</h1>
 
-    <form class="login-form" method="POST" action="php/createUserMySql.php">
+    <form class="login-form" method="POST" action="php/loginMySql.php">
       <label for="username">Username:</label>
       <input id="username" name="username" type="text" placeholder="">
 
       <label for="password">Password:</label>
       <input id="password" name="password" type="password" placeholder="">
 
-      <button type="submit" name="submit" class="btn">Login</button>
+      <label for="password2">Confirm password:</label>
+      <input id="password2" name="password2" type="password" placeholder="">
+
+      <button type="submit" name="submit" class="btn">Create account</button>
     </form>
 
     <p class="register-text">
-      Don't have an account yet? <a href="register.html">Register</a>
+      Already have an account? <a href="login.html">Log in</a>
     </p>
   </section>
 
