@@ -1,4 +1,9 @@
 :root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
 }
 
 * {
@@ -10,7 +15,6 @@
 body {
   background-color: #0b0f19;
   color: #d1d5db;
-  font-family: Arial, sans-serif;
 }
 
 .navigation {
@@ -142,3 +146,39 @@ body {
   background-color: #566174;
 }
 
+.leaderboard {
+  padding: 60px;
+}
+
+.leaderboard h1 {
+  color: white;
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #0f1a2b;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 20px;
+  text-align: left;
+}
+
+.leaderboard-table th {
+  color: #e5e7eb;
+  font-size: 18px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.leaderboard-table td {
+  color: #d1d5db;
+  border-bottom: 1px solid #1f2937;
+}
+
+.points {
+  text-align: right;
+}
