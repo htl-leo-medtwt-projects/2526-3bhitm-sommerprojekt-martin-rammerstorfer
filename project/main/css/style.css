@@ -1,4 +1,13 @@
 :root {
+  --color-bg-primary: #14151A;
+  --color-bg-secondary: #101828;
+  --color-bg-ternary: #1e2939;
+  --color-text-primary: #585d65;
+  --color-text-secondary: #ffffff;
+  --color-button: #99a1af;
+  --color-green: #4ade80;
+  --color-red: #f87171;
+  --color-hyperlink: aqua;
   font-family: Inter, sans-serif;
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
 }
@@ -13,8 +22,8 @@
 }
 
 body {
-  background-color: #0b0f19;
-  color: #d1d5db;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
 }
 
 .navigation {
@@ -22,7 +31,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 25px 40px;
-  background-color: #111827;
+  background-color: var(--color-bg-secondary);
   z-index: 100;
 }
 
@@ -78,11 +87,11 @@ body {
 }
 
 .register-text a {
-  color: aqua;
+  color: var(--color-hyperlink);
 }
 
 .btn {
-  background-color: #374151;
+  background-color: var(--color-text-primary);
   color: white;
   border: none;
   padding: 15px 30px;
@@ -95,7 +104,7 @@ body {
 }
 
 .content {
-  padding: 0px 60px;
+  padding: 0 60px;
   max-width: 900px;
 }
 
