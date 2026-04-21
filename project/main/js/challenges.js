@@ -3,43 +3,50 @@ let challenges = [
         title: "Challenge 1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 100,
-        difficulty: "easy"
+        difficulty: "easy",
+        category: "Image"
     },
     {
         title: "Challenge 2",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 200,
-        difficulty: "medium"
+        difficulty: "medium",
+        category: "Image"
     },
     {
         title: "Challenge 3",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 500,
-        difficulty: "hard"
+        difficulty: "hard",
+        category: "Image"
     },
     {
         title: "Challenge 4",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 250,
-        difficulty: "medium"
+        difficulty: "medium",
+        category: "Image"
     },
     {
         title: "Challenge 5",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 300,
-        difficulty: "medium"
+        difficulty: "medium",   
+        category: "Image"
     },
     {
         title: "Challenge 6",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 100,
-        difficulty: "easy"
+        difficulty: "easy",
+        category: "Image"
     },
     {
         title: "Challenge 7",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 150,
-        difficulty: "easy"
+        difficulty: "easy",
+        category: "Image"
     }
 ];
 
@@ -48,7 +55,7 @@ function generateCards() {
     for (let i=0; i<challenges.length; i++) {
         let challenge = challenges[i];
         outp += `
-        <div class="challenge-card">
+        <div class="challenge-card" onclick="openChallenge(${i})">
             <div class="challenge-header">
             <h2>${challenge.title}</h2>
             <span class="difficulty ${challenge.difficulty}">${challenge.difficulty}</span>
@@ -73,4 +80,8 @@ function filter(level, elem) {
       card.style.display = 'none';
     }
   }
+}
+
+function openChallenge(id) {
+  window.location.href = "challenge.html?id=" + id;
 }
