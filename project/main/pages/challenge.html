@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenge - StegoCTF</title>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/challenge.css">
+  <script src="../js/challenges.js" defer></script>
+</head>
+<body>
+
+  <nav id="navigation">
+    <div id="nav-left">
+      <span id="logo">StegoCTF</span>
+      <a href="../index.html">Home</a>
+      <a href="challenges.html">Challenges</a>
+      <a href="leaderboard.html">Leaderboard</a>
+    </div>
+    <div id="nav-right">
+      <a href="login.html">Login</a>
+    </div>
+  </nav>
+
+  <section class="challenge-page">
+
+    <a href="challenges.html" class="back">Back</a>
+
+    <div class="challenge-box">
+      <div class="challenge-header">
+        <h1>Challenge 1</h1>
+        <span class="difficulty easy">easy</span>
+      </div>
+
+      <p class="label">Description:</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+      <p class="meta">Points: <span>100</span></p>
+      <p class="meta">Category: <span>Image</span></p>
+
+      <button class="btn">Download File</button>
+    </div>
+
+    <div class="challenge-box">
+      <h2>Submit Flag</h2>
+      <div class="flag-row">
+        <input type="text" id="flagInput" placeholder="flag{...}">
+        <button onclick="submitFlag()">Submit</button>
+      </div>
+      <p id="result"></p>
+    </div>
+
+    <div class="challenge-box">
+      <h2>Comments</h2>
+
+      <div class="comment">
+        <span class="user">User 1</span>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      <div class="comment">
+        <span class="user">User 2</span>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>

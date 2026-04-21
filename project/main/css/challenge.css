@@ -1,0 +1,96 @@
+@import 'global.css';
+
+.challenge-page {
+  padding: 60px;
+  max-width: 900px;
+}
+
+.back {
+  color: #9ca3af;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.back:hover {
+  color: white;
+}
+
+.challenge-box {
+  background: #0f1a2b;
+  border: 1px solid #1f2937;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.challenge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.challenge-header h1 {
+  color: white;
+}
+
+.label {
+  color: #9ca3af;
+  margin-top: 15px;
+}
+
+.meta {
+  margin-top: 10px;
+  color: #9ca3af;
+}
+
+.meta span {
+  color: white;
+}
+
+.difficulty.easy { color: #22c55e; }
+
+.btn {
+  margin-top: 20px;
+  background: #374151;
+  border: none;
+  padding: 12px 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #4b5563;
+}
+
+.flag-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.flag-row input {
+  flex: 1;
+  padding: 12px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  color: white;
+}
+
+.flag-row button {
+  padding: 12px 20px;
+  background: #374151;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.comment {
+  margin-top: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.user {
+  color: #9ca3af;
+  font-size: 14px;
+}

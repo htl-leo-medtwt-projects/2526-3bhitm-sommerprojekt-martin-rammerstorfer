@@ -1,1 +1,93 @@
 @import 'global.css';
+
+.challenges {
+    padding: 60px;
+}
+
+.challenges h1 {
+    font-size: 48px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.filters {
+    background-color: #0f1a2b;
+    padding: 25px;
+    margin-bottom: 40px;
+    border: 1px solid #1f2937;
+    width: 100%;
+}
+
+.filters h3 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.filter {
+    background-color: #1f2937;
+    border: none;
+    color: #9ca3af;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.filter.active,
+.filter:hover {
+    background-color: #374151;
+    color: white;
+}
+
+#challenge-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.challenge-card {
+    background-color: #0f1a2b;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid #1f2937;
+    transition: transform 0.2s, border 0.2s;
+    cursor: pointer;
+    width: 32%;
+    min-height: 200px;
+    position: relative;
+}
+
+.challenge-card:hover {
+    transform: translateY(-3px);
+    border: 1px solid lightgray;
+}
+
+.challenge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.challenge-header h2 {
+    color: white;
+}
+
+.difficulty {
+    font-size: 14px;
+    color: #9ca3af;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+}
+
+.challenge-card p {
+    color: #9ca3af;
+    margin-top: 10px;
+}
+
+.points span {
+    color: white;
+}
