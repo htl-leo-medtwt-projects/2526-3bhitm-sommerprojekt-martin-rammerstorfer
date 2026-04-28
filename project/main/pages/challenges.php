@@ -11,7 +11,7 @@ function printChallenges() {
   global $challenges;
   echo "<div class='challenges-container'>";
   for ($i = 0; $i < count($challenges); $i++) {
-    $challenge = $challenges[$i];  
+    $challenge = $challenges[$i];
     $title = $challenge['title'];
     $difficulty = $challenge['difficulty'];
     $description = $challenge['description'];

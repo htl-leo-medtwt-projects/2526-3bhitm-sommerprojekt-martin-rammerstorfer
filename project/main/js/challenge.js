@@ -4,49 +4,56 @@ let challenges = [
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 100,
         difficulty: "easy",
-        category: "Image"
+        category: "Image",
+        file: ""
     },
     {
         title: "Challenge 2",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 200,
         difficulty: "medium",
-        category: "Image"
+        category: "Image",
+        file: ""
     },
     {
         title: "Challenge 3",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 500,
         difficulty: "hard",
-        category: "Image"
+        category: "Image",
+        file: ""
     },
     {
         title: "Challenge 4",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 250,
         difficulty: "medium",
-        category: "Image"
+        category: "Image",
+        file: ""
     },
     {
         title: "Challenge 5",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 300,
         difficulty: "medium",   
-        category: "Image"
+        category: "Image",
+        file: ""
     },
     {
         title: "Challenge 6",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 100,
         difficulty: "easy",
-        category: "Image"
+        category: "Image",
+        file: ""
     },
     {
         title: "Challenge 7",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         points: 150,
         difficulty: "easy",
-        category: "Image"
+        category: "Image",
+        file: ""
     }
 ];
 
@@ -66,7 +73,29 @@ if (challenges[id]) {
       <p class="meta">Points: <span>${challenge.points}</span></p>
       <p class="meta">Category: <span>${challenge.category}</span></p>
 
-      <button class="btn">Download File</button>`;
+      <button class="btn" onclick="donloadFile()">Download File</button>`;
+}
+
+function onStartedDownload(id) {
+  console.log(`Started downloading: ${id}`);
+}
+
+function onFailed(error) {
+  console.log(`Download failed: ${error}`);
+}
+
+let downloadUrl = "https://example.org/image.png";
+
+let downloading = browser.downloads.download({
+  url: downloadUrl,
+  filename: "my-image-again.png",
+  conflictAction: "uniquify",
+});
+
+downloading.then(onStartedDownload, onFailed);
+
+function downloadFile() {
+    
 }
 
 function submitFlag() {
