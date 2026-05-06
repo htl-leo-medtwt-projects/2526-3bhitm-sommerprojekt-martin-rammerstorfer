@@ -1,0 +1,67 @@
+.profile {
+  padding: 60px;
+  max-width: 1000px;
+}
+
+.box {
+  background: #0f1a2b;
+  border: 1px solid #1f2937;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.box h1, .box h2 {
+  color: white;
+}
+
+.back {
+  color: #9ca3af;
+  text-decoration: none;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.back:hover {
+  color: white;
+}
+
+.stats-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.stats-text {
+  width: 200px;
+}
+
+#user-details p {
+  color: #9ca3af;
+  margin: 8px 0;
+}
+
+#user-details p span {
+  color: white;
+}
+
+#user-stats p {
+  margin: 8px 0;
+}
+
+#p-correct {
+  color: var(--color-green);
+
+}
+
+#p-incorrect {
+  color: var(--color-red);
+}
+
+.stats-text span {
+  color: white;
+}
+
+.stats-text hr {
+  border: 1px solid #1f2937;
+}

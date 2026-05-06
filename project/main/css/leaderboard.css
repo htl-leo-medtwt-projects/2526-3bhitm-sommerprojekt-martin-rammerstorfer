@@ -27,6 +27,14 @@
   border-bottom: 1px solid #1f2937;
 }
 
+.leaderboard-table tr {
+  cursor: pointer;
+}
+
+.leaderboard-table tr:hover {
+  background-color: var(--color-bg-ternary);
+}
+
 .points {
   text-align: right;
 }

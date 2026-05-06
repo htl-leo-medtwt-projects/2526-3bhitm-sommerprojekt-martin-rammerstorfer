@@ -44,8 +44,9 @@
 
 #challenge-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     flex-wrap: wrap;
+    gap: 2%;
 }
 
 .challenge-card {
@@ -90,4 +91,11 @@
 
 .points span {
     color: white;
+}
+
+.challenge-card p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }

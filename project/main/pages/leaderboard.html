@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/leaderboard.css">
+  <script src="../js/leaderboard_data.js" defer></script>
+  <script src="../js/leaderboard.js" defer></script>
 </head>
 <body>
 
@@ -35,33 +37,7 @@
           <th class="points">Points</th>
         </tr>
       </thead>
-      <tbody>
-          <a href="./user.html">
-        <tr>
-          <td>1</td>
-          <td>User 1</td>
-          <td>Team 1</td>
-          <td class="points">5000</td>
-        </tr>
-          </a>
-        <tr>
-          <td>2</td>
-          <td>User 2</td>
-          <td>Team 2</td>
-          <td class="points">200</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>User 3</td>
-          <td>Team 2</td>
-          <td class="points">100</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>User 4</td>
-          <td>-</td>
-          <td class="points">1</td>
-        </tr>
+      <tbody id="leaderboard-body">
       </tbody>
     </table>
   </section>
