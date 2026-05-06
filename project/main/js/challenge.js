@@ -51,26 +51,22 @@ function downloadFile() {
 }
 
 function submitFlag() {
-  const challenge = challenges[id];
-  const input = document.getElementById("flagInput");
-  const result = document.getElementById("result");
-
-  if (!challenge || !input || !result) {
+  if (!challenges) {
     return;
   }
+  let challenge = challenges[id];
+  let input = document.getElementById("flagInput");
+  let result = document.getElementById("result");
+  let submittedFlag = input.value.trim();
 
-  const submittedFlag = input.value.trim();
   if (!submittedFlag) {
-    result.innerText = "Please enter a flag.";
-    result.style.color = "#d97706";
-    return;
-  }
-
-  if (submittedFlag === challenge.flag) {
-    result.innerText = "Correct flag! Well done.";
-    result.style.color = "#16a34a";
+    result.innerText = "Enter a flag.";
+    result.style.color = "#9ca3af";
+  } else if (submittedFlag === challenge.flag) {
+    result.innerText = "Flag is correct!";
+    result.style.color = "#4ade80";
   } else {
-    result.innerText = "Incorrect flag. Try again.";
-    result.style.color = "#dc2626";
+    result.innerText = "Flag is incorrect.";
+    result.style.color = "#f87171";
   }
 }
