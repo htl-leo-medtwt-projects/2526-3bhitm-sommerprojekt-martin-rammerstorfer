@@ -25,3 +25,52 @@ if (challenges[id]) {
       </div>
       <p id="result"></p>`
 }
+
+
+// Mithilfe von KI generiert
+function downloadFile() {
+  const challenge = challenges[id];
+  if (!challenge || !challenge.file) {
+    alert("No file available for download.");
+    return;
+  }
+
+  const fileName = challenge.file.split("/").pop() || "download";
+  const downloadPath = location.protocol === 'file:'
+    ? `../${challenge.file}`
+    : `../php/download.php?path=${encodeURIComponent(challenge.file)}`;
+
+  const anchor = document.createElement("a");
+  anchor.href = downloadPath;
+  anchor.download = fileName;
+  anchor.target = "_blank";
+  anchor.style.display = "none";
+  document.body.appendChild(anchor);
+  anchor.click();
+  document.body.removeChild(anchor);
+}
+
+function submitFlag() {
+  const challenge = challenges[id];
+  const input = document.getElementById("flagInput");
+  const result = document.getElementById("result");
+
+  if (!challenge || !input || !result) {
+    return;
+  }
+
+  const submittedFlag = input.value.trim();
+  if (!submittedFlag) {
+    result.innerText = "Please enter a flag.";
+    result.style.color = "#d97706";
+    return;
+  }
+
+  if (submittedFlag === challenge.flag) {
+    result.innerText = "Correct flag! Well done.";
+    result.style.color = "#16a34a";
+  } else {
+    result.innerText = "Incorrect flag. Try again.";
+    result.style.color = "#dc2626";
+  }
+}
