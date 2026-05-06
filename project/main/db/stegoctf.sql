@@ -33,6 +33,9 @@ CREATE TABLE `challenge` (
   `description` varchar(256) NOT NULL,
   `flag` varchar(64) NOT NULL,
   `category` varchar(32) NOT NULL,
+  `difficulty` varchar(16) NOT NULL DEFAULT 'easy',
+  `format` varchar(32) NOT NULL DEFAULT 'FLAG{...}',
+  `file_path` varchar(255) NOT NULL DEFAULT '',
   `score` int NOT NULL,
   `avg_rating` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -78,8 +81,9 @@ CREATE TABLE `user_challenges` (
   `user_id` int NOT NULL,
   `challenge_id` int NOT NULL,
   `solve_date` date NOT NULL,
+  `attempts` int NOT NULL DEFAULT 0,
   `rating` tinyint NOT NULL,
-  `comment` varchar(256) NOT NULL
+  `comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --

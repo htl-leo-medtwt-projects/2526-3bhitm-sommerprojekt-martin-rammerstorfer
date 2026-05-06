@@ -2,30 +2,34 @@
 
 require_once "database.php";
 
-if (!empty($_POST["submit"])) {
-  $_username = $conn->real_escape_string($_POST["username"]);
-  $_password = $conn->real_escape_string($_POST["password1"]);
-  if (strcmp($_password, $conn->real_escape_string($_POST["password2"])) != 0) {
-    include("create_user_form.html");
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $_username = trim($_POST["username"] ?? "");
+  $_password = $_POST["password"] ?? "";
+  $_passwordConfirm = $_POST["password2"] ?? "";
+
+  if ($_password !== $_passwordConfirm) {
+    header("Location: ../pages/register.php?error=password-mismatch");
     exit;
   }
 
   $_passwordHash = password_hash($_password, PASSWORD_BCRYPT);
 
-  $insertStatement = "INSERT INTO login_username (username, password, user_deleted, last_login)
-          VALUES ('$_username', '$_passwordHash', 0, NOW());";
-  
-  if ($_res = $conn->query($insertStatement)) {
-    echo "<br>User $_username has been added to the database.<br>Try to log in.";
-    include("login_form.html");
-  } else {
-    echo "<br>NO insertion. User could not be added. Maybe user $_username already exists.";
-    include("create_user_form.html");
+  $stmt = $conn->prepare(
+    "INSERT INTO user (name, password_hash, user_deleted, last_login, solved, score, team_id)
+      VALUES (?, ?, 0, CURDATE(), 0, 0, 0)"
+  );
+  $stmt->bind_param("ss", $_username, $_passwordHash);
+
+  if ($stmt->execute()) {
+    header('Location: ../pages/login.php');
+    exit;
   }
-} else {
-  include("create_user_form.html");
+
+  header("Location: ../pages/register.php?error=create-failed");
+  exit;
 }
 
-$conn->close();
+header("Location: ../pages/register.php");
+exit;
 
 ?>

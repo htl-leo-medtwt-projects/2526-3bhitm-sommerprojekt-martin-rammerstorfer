@@ -47,7 +47,7 @@ let challenges = [
         difficulty: "medium",
         category: "file",
         file: "challenge_files/blackout/secret",
-        flag: "KDCTF{s4mpl3_fl4g}"
+        flag: "KDCTF{https://i.stack.imgur.com/8Orfr.png}"
     },
     {
         title: "Ievian Polkka",

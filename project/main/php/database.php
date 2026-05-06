@@ -1,6 +1,8 @@
 <?php
 
-SESSION_START();
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 
 $_db_host = "db_server";
 $_db_username = "stegoctf";

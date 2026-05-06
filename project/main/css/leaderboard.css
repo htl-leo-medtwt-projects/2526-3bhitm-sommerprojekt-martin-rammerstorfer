@@ -38,3 +38,7 @@
 .points {
   text-align: right;
 }
+
+a {
+  color: var(--color-hyperlink);
+}

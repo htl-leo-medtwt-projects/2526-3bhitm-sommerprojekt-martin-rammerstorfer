@@ -1,5 +1,9 @@
 @import 'global.css';
 
+* {
+  text-decoration: none;
+}
+
 .challenge-page {
   padding: 60px;
 }
@@ -32,6 +36,26 @@
   color: white;
 }
 
+.challenge-meta {
+  margin-top: 16px;
+  line-height: 1.8;
+  color: #9ca3af;
+}
+
+.challenge-meta div {
+  margin-bottom: 10px;
+}
+
+.download-row {
+  margin-top: 18px;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .label {
   color: #9ca3af;
   margin-top: 15px;
@@ -47,7 +71,6 @@
 }
 
 .btn {
-  margin-top: 20px;
   background: #374151;
   border: none;
   padding: 12px 20px;
@@ -63,23 +86,26 @@
   display: flex;
   gap: 10px;
   margin-top: 15px;
+  flex-wrap: wrap;
 }
 
 .flag-row input {
-  flex: 1;
+  min-width: 0;
   padding: 12px;
+  width:80%;
   background: #111827;
   border: 1px solid #1f2937;
   color: white;
 }
 
 .flag-row button {
-  padding: 12px 20px;
+  width: 15%;
+  padding: 12px 30px;
   background: #374151;
   border: none;
   color: white;
   cursor: pointer;
-  width: 15%;
+  font-size: 14px;
 }
 
 .comment {
@@ -91,4 +117,8 @@
 .user {
   color: #9ca3af;
   font-size: 14px;
+}
+
+#result {
+  margin-top: 10px;
 }

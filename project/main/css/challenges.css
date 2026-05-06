@@ -1,5 +1,9 @@
 @import 'global.css';
 
+* {
+  text-decoration: none;
+}
+
 .challenges {
     padding: 60px;
 }
