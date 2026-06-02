@@ -2,9 +2,9 @@
 
 require_once "database.php";
 
-if (!empty($_POST["submit"])) {
-  $_username = $_POST["username"];
-  $_password = $_POST["password"];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $_username = trim($_POST["username"] ?? "");
+  $_password = $_POST["password"] ?? "";
 
   $stmt = $conn->prepare(
     "SELECT * FROM user WHERE name = ? AND user_deleted = 0 LIMIT 1"
@@ -17,31 +17,35 @@ if (!empty($_POST["submit"])) {
   if ($res->num_rows === 1) {
     $user = $res->fetch_assoc();
 
-    if (password_verify($_password, $user["password"])) {
-
+    if (password_verify($_password, $user["password_hash"])) {
+      session_regenerate_id(true);
       $_SESSION["login"] = 1;
-      $_SESSION["user"] = $user;
+      $_SESSION["user"] = [
+        "id" => $user["id"],
+        "name" => $user["name"]
+      ];
 
       $stmt = $conn->prepare(
-        "UPDATE login_username SET last_login = NOW() WHERE id = ?"
+        "UPDATE user SET last_login = NOW() WHERE id = ?"
       );
       $stmt->bind_param("i", $user["id"]);
       $stmt->execute();
 
-    } else {
-      echo "Wrong password.<br>";
-      include("login_form.html");
+      header("Location: ../pages/user.php");
+      exit;
     }
-  } else {
-    echo "User not found.<br>";
-    include("login_form.html");
+
+    header("Location: ../pages/login.php?error=wrong-password");
+    exit;
   }
+
+  header("Location: ../pages/login.php?error=user-not-found");
+  exit;
 }
 
 $conn->close();
 
-if (is_array($_SESSION) && isset($_SESSION["login"]) && $_SESSION["login"] == 1) {
-  header("Location: secretContent.php");
-}
+header("Location: ../pages/login.php");
+exit;
 
 ?>

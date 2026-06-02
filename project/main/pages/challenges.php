@@ -1,31 +1,13 @@
 <?php
-include '../php/mysql.php';
+require '../php/database.php';
 
-session_start();
+$query = "SELECT c.id, c.name, c.description, c.category, c.score, c.filepath, COALESCE((SELECT AVG(rating) FROM user_challenges uc WHERE uc.challenge_id = c.id AND uc.rating > 0), 0) AS avg_rating FROM challenge c ORDER BY score DESC, name ASC";
+$result = $conn->query($query);
+$challenges = $result ? mysqli_fetch_all($result, MYSQLI_ASSOC) : [];
+$conn->close();
 
-$sql = "SELECT * FROM challenges";
-$result = $conn->query($sql);
-$challenges = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-function printChallenges() {
-  global $challenges;
-  echo "<div class='challenges-container'>";
-  for ($i = 0; $i < count($challenges); $i++) {
-    $challenge = $challenges[$i];
-    $title = $challenge['title'];
-    $difficulty = $challenge['difficulty'];
-    $description = $challenge['description'];
-    $points = $challenge['points'];
-    echo "<div class="challenge-card">
-            <div class="challenge-header">
-            <h2>{$title}</h2>
-            <span class="difficulty {$difficulty}">{$difficulty}</span>
-            </div>
-            <p>{$description}</p>
-            <p class="points">Points: <span>{$points}</span></p>
-        </div>";
-  }
-  echo "</div>";
+function esc($value): string {
+  return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 ?>
 
@@ -46,12 +28,16 @@ function printChallenges() {
   <nav id="navigation">
     <div id="nav-left">
       <span id="logo">StegoCTF</span>
-      <a href="../index.html">Home</a>
-      <a href="challenges.html">Challenges</a>
-      <a href="leaderboard.html">Leaderboard</a>
+      <a href="../index.php">Home</a>
+      <a href="challenges.php">Challenges</a>
+      <a href="leaderboard.php">Leaderboard</a>
     </div>
     <div id="nav-right">
-      <a href="login.html">Login</a>
+      <?php if (!empty($_SESSION['login']) && $_SESSION['login'] === 1): ?>
+        <a href="user.php">Profile</a>
+      <?php else: ?>
+        <a href="login.php">Login</a>
+      <?php endif; ?>
     </div>
   </nav>
 
@@ -68,7 +54,20 @@ function printChallenges() {
       </div>
     </div>
 
-    <div id="challenge-container"></div>
+    <div id="challenge-container">
+      <div class="challenges-container">
+        <?php foreach ($challenges as $challenge): ?>
+          <a href="challenge.php?id=<?= esc((string)$challenge['id']) ?>" class="challenge-card">
+            <div class="challenge-header">
+              <h2><?= esc($challenge['name']) ?></h2>
+            </div>
+            <p><?= esc($challenge['description']) ?></p>
+            <p class="points">Points: <span><?= esc((string)$challenge['score']) ?></span></p>
+            <p class="rating">Rating: <span><?= $challenge['avg_rating'] > 0 ? esc(number_format((float)$challenge['avg_rating'], 1)) . ' / 5' : '-' ?></span></p>
+          </a>
+        <?php endforeach; ?>
+      </div>
+    </div>
 
   </section>
 

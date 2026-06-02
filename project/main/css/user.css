@@ -65,3 +65,69 @@
 .stats-text hr {
   border: 1px solid #1f2937;
 }
+
+.team-section {
+  margin-top: 20px;
+}
+
+.team-section p {
+  color: #9ca3af;
+  margin-bottom: 16px;
+}
+
+.team-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.team-section label {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.team-section input[type="text"] {
+  background-color: var(--color-bg-primary);
+  border: 1px solid #2f3a4f;
+  color: var(--color-text-secondary);
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.team-section input[type="text"]:focus {
+  outline: none;
+  border-color: #475569;
+}
+
+.team-section .btn {
+  align-self: flex-start;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.small-text {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.success-message {
+  background-color: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  color: var(--color-green);
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.error-message {
+  background-color: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  color: var(--color-red);
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}

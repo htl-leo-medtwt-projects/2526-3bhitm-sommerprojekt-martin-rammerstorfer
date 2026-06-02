@@ -1,3 +1,6 @@
+<?php
+require './php/database.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,14 +22,24 @@
       <a href="./pages/leaderboard.php">Leaderboard</a>
     </div>
     <div id="nav-right">
-      <a href="./pages/login.php">Login</a>
+      <?php if (!empty($_SESSION['login']) && $_SESSION['login'] === 1): ?>
+        <a href="./pages/user.php">Profile</a>
+      <?php else: ?>
+        <a href="./pages/login.php">Login</a>
+      <?php endif; ?>
     </div>
   </nav>
 
   <section class="intro">
     <h1>StegoCTF</h1>
     <p class="subtitle">A platform for steganography CTF challenges</p>
-    <button class="btn"><a href="pages/login.php">Start</a></button>
+    <button class="btn">
+      <?php if (!empty($_SESSION['login']) && $_SESSION['login'] === 1): ?>
+        <a href="pages/challenges.php">Start</a>
+      <?php else: ?>
+        <a href="pages/login.php">Start</a>
+      <?php endif; ?>
+    </button>
   </section>
   <section class="content">
     <h2>What is this?</h2>
