@@ -106,8 +106,8 @@ $conn->close();
                 <option value="5">5</option>
               </select>
               <label for="comment">Comment</label>
-              <textarea id="comment" name="comment" rows="3" placeholder="Your comment..."></textarea>
-              <button type="submit" class="btn">Submit comment</button>
+              <textarea id="comment" name="comment" rows="3" placeholder="Leave feedback..."></textarea>
+              <button type="submit" class="btn">Submit feedback</button>
             </form>
           <?php else: ?>
             <p class="small-text">Your rating: <?= esc((string)$userSolved['rating']) ?></p>
