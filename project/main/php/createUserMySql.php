@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $_passwordHash = password_hash($_password, PASSWORD_BCRYPT);
 
   $stmt = $conn->prepare(
-    "INSERT INTO user (name, password_hash, user_deleted, last_login, solved, score, team_id)
-      VALUES (?, ?, 0, CURDATE(), 0, 0, 0)"
+    "INSERT INTO user (name, password_hash, user_deleted, last_login, solved, score, team_id, imgpath)
+      VALUES (?, ?, 0, CURDATE(), 0, 0, 0, 'img/default.png')"
   );
   $stmt->bind_param("ss", $_username, $_passwordHash);
 

@@ -32,6 +32,25 @@
     gap: 15px;
 }
 
+.filter-actions {
+    margin-top: 12px;
+}
+
+#sort-btn {
+    font-size: 0.9em;
+    margin-top: 5px;
+    padding: 10px 14px;
+    background: #1f2937;
+    color: #9ca3af;
+    border: none;
+    cursor: pointer;
+}
+
+#sort-btn:hover {
+    background: #374151;
+    color: white;
+}
+
 .filter {
     background-color: #1f2937;
     border: none;

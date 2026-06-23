@@ -55,17 +55,21 @@ function esc($value): string {
   <section class="profile">
     <a href="leaderboard.php" class="back">← Back</a>
 
-    <?php if (isset($_GET['success']) && $_GET['success'] === 'team-updated'): ?>
-      <div class="success-message">Team updated successfully!</div>
-    <?php endif; ?>
     <?php if (isset($_GET['error'])): ?>
       <div class="error-message">An error occurred: <?= esc($_GET['error']) ?></div>
     <?php endif; ?>
 
     <div class="box" id="user-details">
-      <h1><?= esc($user['name']) ?></h1>
-      <p>Team: <?= esc($user['team_name']) ?></p>
-      <p>Last login: <?= esc($user['last_login']) ?></p>
+      <div class="profile-header">
+        <?php if (!empty($user['imgpath'])): ?>
+          <img class="profile-picture" src="../<?= esc($user['imgpath']) ?>" alt="<?= esc($user['name']) ?>'s profile picture">
+        <?php endif; ?>
+        <div>
+          <h1><?= esc($user['name']) ?></h1>
+          <p>Team: <?= esc($user['team_name']) ?></p>
+          <p>Last login: <?= esc($user['last_login']) ?></p>
+        </div>
+      </div>
     </div>
 
     <div class="box stats">
@@ -82,11 +86,21 @@ function esc($value): string {
         <p>Current team: <strong><?= esc($user['team_name']) ?></strong></p>
         
         <form method="POST" action="../php/joinTeam.php">
-          <label for="team-name">Join or create a team:</label>
+          <label for="team-name"></label>
           <input id="team-name" type="text" name="team_name" placeholder="Team name..." value="<?= $user['team_id'] > 0 ? esc($user['team_name']) : '' ?>">
           <button type="submit" class="btn">Update Team</button>
         </form>
       </div>
+    </div>
+    <div class="box">
+      <h2>Profile picture</h2>
+      <div class="profile-upload-preview">
+        <img class="profile-picture" src="../<?= esc(!empty($user['imgpath']) ? $user['imgpath'] : 'img/default.png') ?>" alt="<?= esc($user['name']) ?>'s profile picture">
+      </div>
+      <form method="POST" action="../php/uploadProfilePicture.php" enctype="multipart/form-data" class="profile-upload-form">
+        <input id="profile-picture" type="file" name="profile_picture" accept="image/png,image/jpeg,image/gif,image/webp" required>
+        <button type="submit" class="btn" id="uploadbtn">Upload</button>
+      </form>
     </div>
   </section>
 

@@ -33,7 +33,7 @@ if (!empty($_SESSION['login']) && $_SESSION['login'] === 1) {
 // Fetch all other comments for this challenge (newest first).
 $allComments = [];
 if ($stmtComments = $conn->prepare(
-  "SELECT uc.comment, uc.rating, uc.solve_date, u.name AS username, uc.user_id FROM user_challenges uc JOIN `user` u ON u.id = uc.user_id WHERE uc.challenge_id = ? AND (uc.comment <> '' OR uc.rating > 0) ORDER BY uc.solve_date DESC"
+  "SELECT uc.comment, uc.rating, uc.solve_date, u.name AS username, u.imgpath AS imgpath, uc.user_id FROM user_challenges uc JOIN `user` u ON u.id = uc.user_id WHERE uc.challenge_id = ? AND (uc.comment <> '' OR uc.rating > 0) ORDER BY uc.solve_date DESC"
 )) {
   $stmtComments->bind_param('i', $id);
   $stmtComments->execute();
@@ -106,31 +106,40 @@ $conn->close();
           </form>
         <?php else: ?>
           <h2>Feedback</h2>
-          <p class="small-text">You solved this challenge on <?= esc($userSolved['solve_date']) ?>.</p>
+          <p class="small-text" id="solved-text">You solved this challenge on <?= esc($userSolved['solve_date']) ?>.</p>
           <?php if (empty($userSolved['rating']) || empty($userSolved['comment'])): ?>
-            <form method="POST" action="../php/submitComment.php">
+            <form method="POST" action="../php/submitComment.php" class="feedback-form">
               <input type="hidden" name="challenge_id" value="<?= (int)$id ?>">
-              <label for="rating">Rating (1-5)</label>
-              <select name="rating" id="rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-              <label for="comment">Comment</label>
-              <textarea id="comment" name="comment" rows="3" placeholder="Leave feedback..."></textarea>
-              <button type="submit" class="btn">Submit feedback</button>
+
+              <div class="form-row">
+                <label for="rating">Rating</label>
+                <select name="rating" id="rating" class="input-select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <label for="comment">Comment (optional)</label>
+                <textarea id="comment" name="comment" rows="4" placeholder="Leave feedback..." class="input-textarea"></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn">Submit feedback</button>
+              </div>
             </form>
-          <?php else: ?>
-            <p class="small-text">Your rating: <?= esc((string)$userSolved['rating']) ?></p>
           <?php endif; ?>
           <div class="feedback-list">
-          <h3>All feedback</h3>
           <?php if (!empty($allComments)): ?>
             <?php foreach ($allComments as $c): ?>
               <div class="comment">
-                <p class="small-text"><strong><?= esc($c['username']) ?></strong> — <?= esc($c['solve_date']) ?><?php if (!empty($c['rating'])): ?> — Rating: <?= esc((string)$c['rating']) ?><?php endif; ?></p>
+                <div class="comment-header">
+                  <img class="comment-avatar" src="../<?= esc(!empty($c['imgpath']) ? $c['imgpath'] : 'img/default.png') ?>" alt="<?= esc($c['username']) ?>'s profile picture">
+                  <p class="small-text"><strong><?= esc($c['username']) ?></strong> — <?= esc($c['solve_date']) ?><?php if (!empty($c['rating'])): ?> — Rating: <?= esc((string)$c['rating']) ?><?php endif; ?></p>
+                </div>
                 <?php if (!empty($c['comment'])): ?>
                   <p><?= nl2br(esc($c['comment'])) ?></p>
                 <?php endif; ?>

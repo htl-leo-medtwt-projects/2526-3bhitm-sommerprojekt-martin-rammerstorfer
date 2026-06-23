@@ -63,6 +63,9 @@ function difficultyFromScore($score): string {
         <button class="filter" onclick="filter('medium', this)">Medium</button>
         <button class="filter" onclick="filter('hard', this)">Hard</button>
       </div>
+      <div class="filter-actions">
+        <button type="button" id="sort-btn" class="btn" data-order="asc">▲ Ascending</button>
+      </div>
     </div>
 
     <div id="challenge-container">

@@ -1,6 +1,10 @@
 <?php
 require '../php/database.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
 // Accept id or name
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $name = isset($_GET['name']) ? trim($_GET['name']) : '';
@@ -23,10 +27,7 @@ $user = $res ? $res->fetch_assoc() : null;
 $stmt->close();
 $conn->close();
 
-if (!$user) {
-  header('Location: leaderboard.php');
-  exit;
-}
+$isOwnProfile = !empty($_SESSION['login']) && $_SESSION['login'] === 1 && !empty($_SESSION['user']) && $_SESSION['user']['id'] === $user['id'];
 
 function esc($value): string {
   return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
@@ -60,10 +61,25 @@ function esc($value): string {
 
   <section class="profile">
     <a href="leaderboard.php" class="back">← Back</a>
+
+    <?php if (isset($_GET['success']) && $_GET['success'] === 'upload'): ?>
+      <div class="success-message">Profile picture uploaded successfully.</div>
+    <?php endif; ?>
+    <?php if (isset($_GET['error'])): ?>
+      <div class="error-message">An error occurred: <?= esc($_GET['error']) ?></div>
+    <?php endif; ?>
+
     <div class="box" id="user-details">
-      <h1><?= esc($user['name']) ?></h1>
-      <p>Team: <?= esc($user['team_name']) ?></p>
-      <p>Last login: <?= esc($user['last_login']) ?></p>
+      <div class="profile-header">
+        <?php if (!empty($user['imgpath'])): ?>
+          <img class="profile-picture" src="../<?= esc($user['imgpath']) ?>" alt="<?= esc($user['name']) ?>'s profile picture">
+        <?php endif; ?>
+        <div>
+          <h1><?= esc($user['name']) ?></h1>
+          <p>Team: <?= esc($user['team_name']) ?></p>
+          <p>Last login: <?= esc($user['last_login']) ?></p>
+        </div>
+      </div>
     </div>
 
     <div class="box stats">

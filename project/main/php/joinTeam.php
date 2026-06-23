@@ -30,11 +30,9 @@ $checkStmt->execute();
 $checkResult = $checkStmt->get_result();
 
 if ($checkResult->num_rows > 0) {
-  // Team exists, use its ID
   $team = $checkResult->fetch_assoc();
   $teamId = $team['id'];
 } else {
-  // Team doesn't exist, create it
   $insertStmt = $conn->prepare("INSERT INTO team (name, total_score) VALUES (?, 0)");
   $insertStmt->bind_param('s', $teamName);
   
@@ -47,7 +45,6 @@ if ($checkResult->num_rows > 0) {
   $teamId = $conn->insert_id;
 }
 
-// Update user's team
 $updateStmt = $conn->prepare("UPDATE user SET team_id = ? WHERE id = ?");
 $updateStmt->bind_param('ii', $teamId, $userId);
 

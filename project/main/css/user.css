@@ -25,15 +25,56 @@
   color: white;
 }
 
-.stats-content {
+.profile-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.profile-picture {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #2f3a4f;
+  background: #111827;
+}
+
+.profile-upload-preview {
+  margin-bottom: 0;
   margin-top: 20px;
 }
 
-.stats-text {
-  width: 200px;
+.profile-upload-form {
+  display: grid;
+  gap: 12px;
+  max-width: 420px;
+  margin-top: 20px;
+}
+
+#uploadbtn {
+  padding: 10px;
+  font-size: 0.9em;
+  width: 29%;
+}
+
+.profile-upload-form label,
+.profile-upload-form .small-text {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.profile-upload-form input[type="file"] {
+  color: #d1d5db;
+}
+
+.stats-content {
+  margin-top: 20px;
+}
+
+.stats-content p {
+  margin-top: 12px;
 }
 
 #user-details p {

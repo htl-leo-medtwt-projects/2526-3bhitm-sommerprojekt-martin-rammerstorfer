@@ -19,6 +19,10 @@
   color: white;
 }
 
+#solved-text {
+  margin-top: 8px;
+}
+
 .challenge-box {
   background: #0f1a2b;
   border: 1px solid #1f2937;
@@ -115,10 +119,65 @@
   font-size: 14px;
 }
 
+/* Feedback form styling */
+.feedback-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  width: 30%;
+}
+
+.feedback-form .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-select, .input-textarea {
+  background: #0b1220;
+  border: 1px solid #1f2937;
+  color: #e5e7eb;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+.input-textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.feedback-form .form-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 25px;
+}
+
 .comment {
   margin-top: 20px;
   padding-bottom: 15px;
   border-bottom: 1px solid #1f2937;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #1f2937;
+  background: #111827;
+  display: block;
 }
 
 .user {
