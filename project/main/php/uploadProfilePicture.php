@@ -14,7 +14,7 @@ if (empty($_FILES['profile_picture']) || $_FILES['profile_picture']['error'] !==
 
 $file = $_FILES['profile_picture'];
 $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-$maxSize = 2 * 1024 * 1024; // 2 MB
+$maxSize = 2 * 1024 * 1024;
 
 if ($file['size'] > $maxSize) {
   header('Location: ../pages/profile.php?error=file-too-large');

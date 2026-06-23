@@ -1,5 +1,4 @@
 function generateLeaderboard() {
-    // sort by points descending
     users.sort((a, b) => b.points - a.points);
     let outp = '';
     for (let i=0; i<users.length; i++) {
@@ -17,7 +16,6 @@ function generateLeaderboard() {
 generateLeaderboard();
 
 function openUser(id) {
-  // Attempt to redirect to public profile by name
   const user = users[id];
   if (user && user.user) {
     window.location.href = "pages/profile.php?name=" + encodeURIComponent(user.user);

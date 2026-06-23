@@ -30,7 +30,6 @@ if (!empty($_SESSION['login']) && $_SESSION['login'] === 1) {
   $check->close();
 }
 
-// Fetch all other comments for this challenge (newest first).
 $allComments = [];
 if ($stmtComments = $conn->prepare(
   "SELECT uc.comment, uc.rating, uc.solve_date, u.name AS username, u.imgpath AS imgpath, uc.user_id FROM user_challenges uc JOIN `user` u ON u.id = uc.user_id WHERE uc.challenge_id = ? AND (uc.comment <> '' OR uc.rating > 0) ORDER BY uc.solve_date DESC"
