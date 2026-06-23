@@ -47,10 +47,15 @@
 }
 
 #challenge-container {
+    width: 100%;
+}
+
+.challenges-container {
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 2%;
+    width: 100%;
 }
 
 .challenge-card {

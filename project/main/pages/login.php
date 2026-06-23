@@ -40,10 +40,10 @@ require '../php/database.php';
       <label for="password">Password:</label>
       <input id="password" name="password" type="password" placeholder="">
 
+      <div class="form-error" id="errorMessage" aria-live="polite"></div>
+
       <button type="submit" name="submit" value="Login" class="btn">Login</button>
     </form>
-
-    <div class="form-error" id="errorMessage" aria-live="polite"></div>
 
     <p class="register-text">
       Don't have an account yet? <a href="register.php">Register</a>

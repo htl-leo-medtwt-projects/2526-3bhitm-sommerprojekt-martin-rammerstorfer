@@ -51,7 +51,7 @@ function esc($value): string {
     </div>
     <div id="nav-right">
       <?php if (!empty($_SESSION['login']) && $_SESSION['login'] === 1): ?>
-        <a href="user.php">My Profile</a>
+        <a href="user.php">Profile</a>
       <?php else: ?>
         <a href="login.php">Login</a>
       <?php endif; ?>

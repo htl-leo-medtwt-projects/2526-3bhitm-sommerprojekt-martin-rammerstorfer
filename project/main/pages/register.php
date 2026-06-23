@@ -33,8 +33,6 @@ require '../php/database.php';
   <section class="login-container">
     <h1>Create an account</h1>
 
-    <div class="form-error" id="errorMessage" aria-live="polite"></div>
-
     <form class="login-form" method="POST" action="../php/createUserMySql.php">
       <label for="username">Username:</label>
       <input id="username" name="username" type="text" placeholder="">
@@ -44,6 +42,8 @@ require '../php/database.php';
 
       <label for="password2">Confirm password:</label>
       <input id="password2" name="password2" type="password" placeholder="">
+
+      <div class="form-error" id="errorMessage" aria-live="polite"></div>
 
       <button type="submit" name="submit" value="Create account" class="btn">Create account</button>
     </form>
