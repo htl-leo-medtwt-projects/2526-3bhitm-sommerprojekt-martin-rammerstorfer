@@ -63,4 +63,10 @@
 
 .register-text a {
   color: var(--color-hyperlink);
+  text-decoration: none;
+}
+
+.register-text a:hover {
+  color: var(--color-hyperlink);
+  text-decoration: underline;
 }

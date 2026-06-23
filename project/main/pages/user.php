@@ -82,7 +82,7 @@ function esc($value): string {
         <p>Current team: <strong><?= esc($user['team_name']) ?></strong></p>
         
         <form method="POST" action="../php/joinTeam.php">
-          <label for="team-name">Join or create a team (leave empty to leave):</label>
+          <label for="team-name">Join or create a team:</label>
           <input id="team-name" type="text" name="team_name" placeholder="Team name..." value="<?= $user['team_id'] > 0 ? esc($user['team_name']) : '' ?>">
           <button type="submit" class="btn">Update Team</button>
         </form>

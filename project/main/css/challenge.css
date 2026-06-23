@@ -37,13 +37,18 @@
 }
 
 .challenge-meta {
-  margin-top: 16px;
+  margin-top: 0;
   line-height: 1.8;
   color: #9ca3af;
 }
 
 .challenge-meta div {
-  margin-bottom: 10px;
+  margin-bottom: 0;
+}
+
+.challenge-box #desc {
+  color: white;
+  margin-top: 18px;
 }
 
 .download-row {
@@ -123,4 +128,14 @@
 
 #result {
   margin-top: 10px;
+}
+
+a {
+  color: var(--color-hyperlink);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-hyperlink);
+  text-decoration: underline;
 }

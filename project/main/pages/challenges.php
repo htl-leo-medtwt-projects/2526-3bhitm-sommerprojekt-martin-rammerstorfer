@@ -9,6 +9,17 @@ $conn->close();
 function esc($value): string {
   return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
+
+function difficultyFromScore($score): string {
+  $score = (int)$score;
+  if ($score < 300) {
+    return 'easy';
+  }
+  if ($score < 500) {
+    return 'medium';
+  }
+  return 'hard';
+}
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +68,8 @@ function esc($value): string {
     <div id="challenge-container">
       <div class="challenges-container">
         <?php foreach ($challenges as $challenge): ?>
-          <a href="challenge.php?id=<?= esc((string)$challenge['id']) ?>" class="challenge-card">
+          <?php $difficulty = difficultyFromScore($challenge['score']); ?>
+          <a href="challenge.php?id=<?= esc((string)$challenge['id']) ?>" class="challenge-card" data-difficulty="<?= esc($difficulty) ?>">
             <div class="challenge-header">
               <h2><?= esc($challenge['name']) ?></h2>
             </div>

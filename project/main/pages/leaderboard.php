@@ -46,10 +46,10 @@ function esc($value): string {
   <section class="leaderboard">
     <h1>Leaderboard</h1>
 
-    <table class="leaderboard-table">
+    <table class="leaderboard-table" style="width: 100%;">
       <thead>
         <tr>
-          <th>Rank</th>
+          <th style="width=10%;">Rank</th>
           <th>User</th>
           <th>Team</th>
           <th class="points">Points</th>

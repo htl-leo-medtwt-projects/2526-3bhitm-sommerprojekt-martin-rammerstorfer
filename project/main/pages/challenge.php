@@ -30,6 +30,18 @@ if (!empty($_SESSION['login']) && $_SESSION['login'] === 1) {
   $check->close();
 }
 
+// Fetch all other comments for this challenge (newest first).
+$allComments = [];
+if ($stmtComments = $conn->prepare(
+  "SELECT uc.comment, uc.rating, uc.solve_date, u.name AS username, uc.user_id FROM user_challenges uc JOIN `user` u ON u.id = uc.user_id WHERE uc.challenge_id = ? AND (uc.comment <> '' OR uc.rating > 0) ORDER BY uc.solve_date DESC"
+)) {
+  $stmtComments->bind_param('i', $id);
+  $stmtComments->execute();
+  $resComments = $stmtComments->get_result();
+  $allComments = $resComments ? mysqli_fetch_all($resComments, MYSQLI_ASSOC) : [];
+  $stmtComments->close();
+}
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -69,11 +81,11 @@ $conn->close();
         <h1><?= esc($challenge['name']) ?></h1>
       </div>
       <div class="challenge-meta">
-        <div>Category: <?= esc($challenge['category']) ?></div>
-        <div>Points: <?= esc((string)$challenge['score']) ?></div>
-        <div>Avg rating: <?= $challenge['avg_rating'] > 0 ? esc(number_format((float)$challenge['avg_rating'], 1)) . ' / 5' : '-' ?></div>
+        <div>Points: <span style="color: white;"><?= esc((string)$challenge['score']) ?></span></div>
+        <div>Avg rating: <span style="color: white;"><?= $challenge['avg_rating'] > 0 ? esc(number_format((float)$challenge['avg_rating'], 1)) . ' / 5' : '-' ?></span></div>
+        <div>Category: <span style="color: white;"><?= esc($challenge['category']) ?></span></div>
       </div>
-      <p><?= nl2br(esc($challenge['description'])) ?></p>
+      <p id="desc"><?= nl2br(esc($challenge['description'])) ?></p>
       <?php if (!empty($challenge['filepath'])): ?>
         <div class="download-row">
           <a class="btn download-btn" href="../<?= esc($challenge['filepath']) ?>" download>Download file</a>
@@ -82,9 +94,9 @@ $conn->close();
     </div>
 
     <div class="challenge-box" id="challenge-flag">
-      <h2>Submit Flag</h2>
       <?php if (!empty($_SESSION['login']) && $_SESSION['login'] === 1): ?>
         <?php if (!$userSolved): ?>
+          <h2>Submit Flag</h2>
           <form method="POST" action="../php/submitFlag.php">
             <input type="hidden" name="challenge_id" value="<?= (int)$id ?>">
             <div class="flag-row">
@@ -93,7 +105,8 @@ $conn->close();
             </div>
           </form>
         <?php else: ?>
-          <p class="small-text">You already solved this challenge on <?= esc($userSolved['solve_date']) ?>.</p>
+          <h2>Feedback</h2>
+          <p class="small-text">You solved this challenge on <?= esc($userSolved['solve_date']) ?>.</p>
           <?php if (empty($userSolved['rating']) || empty($userSolved['comment'])): ?>
             <form method="POST" action="../php/submitComment.php">
               <input type="hidden" name="challenge_id" value="<?= (int)$id ?>">
@@ -111,13 +124,27 @@ $conn->close();
             </form>
           <?php else: ?>
             <p class="small-text">Your rating: <?= esc((string)$userSolved['rating']) ?></p>
-            <p><?= nl2br(esc($userSolved['comment'])) ?></p>
           <?php endif; ?>
+          <div class="feedback-list">
+          <h3>All feedback</h3>
+          <?php if (!empty($allComments)): ?>
+            <?php foreach ($allComments as $c): ?>
+              <div class="comment">
+                <p class="small-text"><strong><?= esc($c['username']) ?></strong> — <?= esc($c['solve_date']) ?><?php if (!empty($c['rating'])): ?> — Rating: <?= esc((string)$c['rating']) ?><?php endif; ?></p>
+                <?php if (!empty($c['comment'])): ?>
+                  <p><?= nl2br(esc($c['comment'])) ?></p>
+                <?php endif; ?>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p class="small-text">No feedback yet.</p>
+          <?php endif; ?>
+        </div>
+      </div>
         <?php endif; ?>
       <?php else: ?>
         <p class="small-text">Please <a href="login.php">log in</a> to submit a flag.</p>
       <?php endif; ?>
-    </div>
   </section>
 
 </body>
